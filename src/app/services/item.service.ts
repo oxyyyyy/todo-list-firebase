@@ -3,11 +3,12 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/observable';
 import { Item } from '../models/item';
 
+
 @Injectable()
 export class ItemService {
 
   itemsCollection: AngularFirestoreCollection<Item>;
-  items: Observable<Item[]>;
+  items: Observable<any[]>;
 
   constructor(public afs: AngularFirestore) {
     this.items = this.afs.collection('items').valueChanges();
@@ -15,6 +16,10 @@ export class ItemService {
 
   getItems() {
     return this.items;
+  }
+
+  addItem(inputData) {
+    this.afs.collection('items').doc(inputData.title + 'lol').set({ title: inputData.title, id: inputData.id });
   }
 
 }

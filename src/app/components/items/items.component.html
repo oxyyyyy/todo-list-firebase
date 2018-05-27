@@ -1,3 +1,6 @@
-<p>
-  items works!
-</p>
+<input type="text" [(ngModel)]="inputData.title">
+<input type="number" [(ngModel)]="inputData.id">
+<button (click)="addItem()">LOG</button>
+<ul>
+  <li *ngFor='let item of items'>{{ item.title }}</li>
+</ul>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../services/item.service';
+import { Item } from '../../models/item';
+import { NewItem } from '../../models/newItem';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-items',
@@ -8,10 +11,23 @@ import { ItemService } from '../../services/item.service';
 })
 export class ItemsComponent implements OnInit {
 
-  constructor() { }
-  // private itemService: ItemService <------------- ERROR
+  items: Item[];
+  inputData: NewItem = {
+    title: '',
+    id: 0
+  };
+
+  constructor(private itemService: ItemService) {}
 
   ngOnInit() {
+    this.itemService.getItems().subscribe(items => {
+      this.items = items;
+    });
+  }
+
+  addItem() {
+    this.itemService.addItem(this.inputData);
+    console.log(this.inputData);
   }
 
 }

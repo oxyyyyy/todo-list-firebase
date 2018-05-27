@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { ItemsComponent } from './components/items/items.component';
 
 import { ItemService } from './services/item.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ItemService } from './services/item.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule
   ],
